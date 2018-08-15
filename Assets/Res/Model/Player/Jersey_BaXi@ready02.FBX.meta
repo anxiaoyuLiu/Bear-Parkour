@@ -1,0 +1,133 @@
+fileFormatVersion: 2
+guid: a03d8e74ec9a72a40aa2b6961ab7e68d
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: Ball
+    100002: Ball_SangBaRongYao
+    100004: CATRigHub001
+    100006: CATRigHub002
+    100008: CATRigLArm1
+    100010: CATRigLArm2
+    100012: CATRigLArmCollarbone
+    100014: CATRigLArmIKTarget
+    100016: CATRigLArmPalm
+    100018: CATRigLLeg1
+    100020: CATRigLLeg2
+    100022: CATRigLLegAnkle
+    100024: CATRigLLegPlatform
+    100026: CATRigRArm1
+    100028: CATRigRArm2
+    100030: CATRigRArmCollarbone
+    100032: CATRigRArmIKTarget
+    100034: CATRigRArmPalm
+    100036: CATRigRLeg1
+    100038: CATRigRLeg2
+    100040: CATRigRLegAnkle
+    100042: CATRigRLegPlatform
+    100044: CATRigSpine
+    100046: CATRigTail1
+    100048: CATRigTail1 1
+    100050: CATRigTail2
+    100052: CATRigTail2 1
+    100054: CATRigTail3
+    100056: CATRigTail3 1
+    100058: CATRigTail4
+    100060: CATRigTail4 1
+    100062: Character001
+    100064: Jersey_BaXi
+    100066: //RootNode
+    400000: Ball
+    400002: Ball_SangBaRongYao
+    400004: CATRigHub001
+    400006: CATRigHub002
+    400008: CATRigLArm1
+    400010: CATRigLArm2
+    400012: CATRigLArmCollarbone
+    400014: CATRigLArmIKTarget
+    400016: CATRigLArmPalm
+    400018: CATRigLLeg1
+    400020: CATRigLLeg2
+    400022: CATRigLLegAnkle
+    400024: CATRigLLegPlatform
+    400026: CATRigRArm1
+    400028: CATRigRArm2
+    400030: CATRigRArmCollarbone
+    400032: CATRigRArmIKTarget
+    400034: CATRigRArmPalm
+    400036: CATRigRLeg1
+    400038: CATRigRLeg2
+    400040: CATRigRLegAnkle
+    400042: CATRigRLegPlatform
+    400044: CATRigSpine
+    400046: CATRigTail1
+    400048: CATRigTail1 1
+    400050: CATRigTail2
+    400052: CATRigTail2 1
+    400054: CATRigTail3
+    400056: CATRigTail3 1
+    400058: CATRigTail4
+    400060: CATRigTail4 1
+    400062: Character001
+    400064: Jersey_BaXi
+    400066: //RootNode
+    2300000: Ball_SangBaRongYao
+    3300000: Ball_SangBaRongYao
+    4300000: Jersey_BaXi
+    4300002: Ball_SangBaRongYao
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Jersey_BaXi
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 2
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 

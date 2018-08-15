@@ -1,0 +1,59 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Item
+  - ItemBeforeTrigger
+  - FxTemporaire
+  - Goalkeeper
+  - Goal
+  - Road
+  - SmallBlock
+  - BigBlock
+  - DeathBlock
+  - BeforeTrigger
+  - People
+  - MagnetTrigger
+  - ShootTrigger
+  - Ball
+  - Test
+  - AnimationTrigger
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - 
+  - 
+  - 
+  - Sky
+  - Model
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0

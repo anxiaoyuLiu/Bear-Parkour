@@ -1,0 +1,134 @@
+fileFormatVersion: 2
+guid: 0b15c1ee173f58945b9d827bfcc9b4d5
+ModelImporter:
+  serializedVersion: 15
+  fileIDToRecycleName:
+    100000: CATRigHub001
+    100002: CATRigHub002
+    100004: CATRigLArm1
+    100006: CATRigLArm2
+    100008: CATRigLArmCollarbone
+    100010: CATRigLArmIKTarget
+    100012: CATRigLArmPalm
+    100014: CATRigLLeg1
+    100016: CATRigLLeg2
+    100018: CATRigLLegAnkle
+    100020: CATRigLLegPlatform
+    100022: CATRigRArm1
+    100024: CATRigRArm2
+    100026: CATRigRArmCollarbone
+    100028: CATRigRArmIKTarget
+    100030: CATRigRArmPalm
+    100032: CATRigRLeg1
+    100034: CATRigRLeg2
+    100036: CATRigRLegAnkle
+    100038: CATRigRLegPlatform
+    100040: CATRigSpine
+    100042: CATRigTail1
+    100044: CATRigTail1 1
+    100046: CATRigTail2
+    100048: CATRigTail2 1
+    100050: CATRigTail3
+    100052: CATRigTail3 1
+    100054: CATRigTail4
+    100056: CATRigTail4 1
+    100058: Character001
+    100060: Jersey_BaXi
+    100062: //RootNode
+    100064: Jersey_ShouTao
+    100066: Jersey_ShouTao01
+    400000: CATRigHub001
+    400002: CATRigHub002
+    400004: CATRigLArm1
+    400006: CATRigLArm2
+    400008: CATRigLArmCollarbone
+    400010: CATRigLArmIKTarget
+    400012: CATRigLArmPalm
+    400014: CATRigLLeg1
+    400016: CATRigLLeg2
+    400018: CATRigLLegAnkle
+    400020: CATRigLLegPlatform
+    400022: CATRigRArm1
+    400024: CATRigRArm2
+    400026: CATRigRArmCollarbone
+    400028: CATRigRArmIKTarget
+    400030: CATRigRArmPalm
+    400032: CATRigRLeg1
+    400034: CATRigRLeg2
+    400036: CATRigRLegAnkle
+    400038: CATRigRLegPlatform
+    400040: CATRigSpine
+    400042: CATRigTail1
+    400044: CATRigTail1 1
+    400046: CATRigTail2
+    400048: CATRigTail2 1
+    400050: CATRigTail3
+    400052: CATRigTail3 1
+    400054: CATRigTail4
+    400056: CATRigTail4 1
+    400058: Character001
+    400060: Jersey_BaXi
+    400062: //RootNode
+    400064: Jersey_ShouTao
+    400066: Jersey_ShouTao01
+    4300000: Jersey_BaXi
+    4300002: Jersey_ShouTao
+    4300004: Jersey_ShouTao01
+    7400000: Take 001
+    9500000: //RootNode
+    11100000: //RootNode
+    13700000: Jersey_BaXi
+    13700002: Jersey_ShouTao
+    13700004: Jersey_ShouTao01
+  materials:
+    importMaterials: 0
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: .00999999978
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 1
+  userData: 
