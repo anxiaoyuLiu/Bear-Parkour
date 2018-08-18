@@ -28,7 +28,7 @@ public class AnimationController : View {
 
     private void Update()
     {
-        if (gameModel.IsPlay && !gameModel.IsPause)
+        if (!(gameModel.IsOver || gameModel.IsPause))
         {
             PlayAnimation();
             if (PlayAnimation != PlayRun)
@@ -78,6 +78,7 @@ public class AnimationController : View {
         {
             PlayAnimation = PlayRun;
             controller.isChanging = false;
+            controller.times = 1.2f;
             GameSetting.Instance.playSound.PlayStepAudio();
         }
     }
@@ -90,6 +91,7 @@ public class AnimationController : View {
         {
             PlayAnimation = PlayRun;
             controller.isChanging = false;
+            controller.times = 1.2f;
             GameSetting.Instance.playSound.PlayStepAudio();
         }
     }
@@ -102,6 +104,7 @@ public class AnimationController : View {
         {
             PlayAnimation = PlayRun;
             controller.isChanging = false;
+            controller.times = 1.2f;
             controller.isRolling = false;
             GameSetting.Instance.playSound.PlayStepAudio();
         }
@@ -115,6 +118,7 @@ public class AnimationController : View {
         {
             PlayAnimation = PlayRun;
             controller.isChanging = false;
+            controller.times = 1.2f;
             controller.isJumping = false;
             GameSetting.Instance.playSound.PlayStepAudio();
         }

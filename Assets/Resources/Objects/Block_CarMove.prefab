@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4067691912843658}
   - component: {fileID: 65673110880424154}
-  - component: {fileID: 114635053390126076}
   - component: {fileID: 114939531375603132}
   m_Layer: 0
   m_Name: carArea
@@ -44,11 +43,11 @@ GameObject:
   - component: {fileID: 114836944638457976}
   m_Layer: 0
   m_Name: Block_CarMove
-  m_TagString: DeathBlock
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &4067691912843658
 Transform:
   m_ObjectHideFlags: 1
@@ -153,17 +152,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.022, y: 0.0023, z: 0.044}
   m_Center: {x: 0, y: 0.0266, z: 0.00032295473}
---- !u!114 &114635053390126076
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1535165442233704}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114836944638457976
 MonoBehaviour:
   m_ObjectHideFlags: 1

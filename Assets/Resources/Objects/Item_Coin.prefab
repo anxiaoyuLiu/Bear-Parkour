@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4748756007718700}
   - component: {fileID: 33729237163134902}
-  - component: {fileID: 114765286961996746}
   - component: {fileID: 65633446761992650}
   - component: {fileID: 54140627647633934}
   - component: {fileID: 114306573815509406}
@@ -56,7 +55,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4961579394111516}
-  - component: {fileID: 114558855363696474}
   - component: {fileID: 111507533161497038}
   m_Layer: 0
   m_Name: Cylinder
@@ -205,27 +203,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 10f5cc855ef415545848ef8477d7386c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114558855363696474
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1541804087544992}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114765286961996746
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1126925331853190}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 

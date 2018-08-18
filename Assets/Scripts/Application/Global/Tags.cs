@@ -17,4 +17,7 @@ public static class Tags {
     public static string goal = "Goal";
     public static string test = "Test";
     public static string ball = "Ball";
+    public static string car = "Car";
+    public static string item = "Item";
+    public static string animationTrigger = "AnimationTrigger";
 }

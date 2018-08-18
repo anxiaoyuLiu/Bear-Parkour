@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SubPool : MonoBehaviour {
+public class SubPool { // : MonoBehaviour（继承MonoBehaviour会导致Worning，暂且取消）
 
     List<GameObject> PoolList = new List<GameObject>();
     GameObject m_prefab;
@@ -39,7 +39,7 @@ public class SubPool : MonoBehaviour {
         go.SetActive(true);
         //go.SendMessage("SetInfo", SendMessageOptions.DontRequireReceiver);
         //Debug.Log("send message to:"+go.name);
-        go.SendMessage("SetInfo");
+        go.SendMessage("SetInfo",SendMessageOptions.DontRequireReceiver);
         return go;
     }
 

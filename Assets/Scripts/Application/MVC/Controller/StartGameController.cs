@@ -8,6 +8,7 @@ public class StartGameController : Controller {
     {
         //注册所有controller
         RegisterController(Const.E_EnterScenes, typeof(EnterScenesController));
+        RegisterController(Const.E_ExitScenes, typeof(ExitScenesController));
         RegisterController(Const.E_EndGame, typeof(EndGameController));
         RegisterController(Const.E_PauseGame, typeof(PauseGameController));
         RegisterController(Const.E_ContinueGame, typeof(ContinulGameController));
@@ -19,6 +20,10 @@ public class StartGameController : Controller {
         RegisterController(Const.E_CreatObject, typeof(CreatObjectController));
         RegisterController(Const.E_PayContinueGame, typeof(PayContinueGameController));
         RegisterController(Const.E_CloseEndGame, typeof(CloseEndGameController));
+        RegisterController(Const.E_BackHome, typeof(BackHomeController));
+        RegisterController(Const.E_GoShopping, typeof(GoShoppingController));
+        RegisterController(Const.E_Restart, typeof(RestartController));
+        RegisterController(Const.E_BuySkill, typeof(BuySkillController));
         //注册model
         RegisterModel(new GameModel());
         //初始化

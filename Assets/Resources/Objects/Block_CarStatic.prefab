@@ -26,11 +26,11 @@ GameObject:
   - component: {fileID: 114702573097748826}
   m_Layer: 0
   m_Name: Block_CarStatic
-  m_TagString: DeathBlock
+  m_TagString: Car
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!1 &1508249746254418
 GameObject:
   m_ObjectHideFlags: 0
@@ -40,7 +40,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4655053085167698}
   - component: {fileID: 65369453071266582}
-  - component: {fileID: 114609680860265900}
   - component: {fileID: 114347670148972424}
   m_Layer: 0
   m_Name: carArea
@@ -165,17 +164,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isTrigger: 0
---- !u!114 &114609680860265900
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1508249746254418}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114702573097748826
 MonoBehaviour:
   m_ObjectHideFlags: 1

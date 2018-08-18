@@ -16,14 +16,14 @@ public class GameSetting : MonoSingleton<GameSetting> {
     [HideInInspector]
     public StaticData staticData;
 
-    public GameObject[] objectList = new GameObject[30];//存储所有障碍物和奖励物品
-    GameObject go;
-    int listLength;
+    //public GameObject[] objectList = new GameObject[30];//存储所有障碍物和奖励物品
+    //GameObject go;
+    //int listLength;
 
     //private PlayerController player;
     //GameModel gameModel;
 
-    private int currentscene = 0;
+    //private int currentscene = 0;
 
     private void Start()
     {
@@ -42,25 +42,18 @@ public class GameSetting : MonoSingleton<GameSetting> {
         SendEvent(Const.E_StartGame);
 
         //场景跳转
-        Instance.LoadScene(4);
+        Instance.LoadScene(1);
         //player = GameObject.FindWithTag(Tags.player).GetComponent<PlayerController>();
-        Instance.playSound.PlayBgAudio(Const.Bgm_ZhanDou);
-        Instance.playSound.StartStepAudio();
+        //Instance.playSound.PlayBgAudio(Const.Bgm_ZhanDou);
+        //Instance.playSound.StartStepAudio();
 
-        //通知CreatObjectController类开始创建游戏物品
-        currentscene = SceneManager.GetActiveScene().buildIndex;
-        if (currentscene == 4)
-        {
-            StartCoroutine(ICreatObject());
-        }
-
-        foreach (GameObject go in objectList)
-        {
-            if (go != null)
-            {
-                listLength++;
-            }
-        }
+        //foreach (GameObject go in objectList)
+        //{
+        //    if (go != null)
+        //    {
+        //        listLength++;
+        //    }
+        //}
         //Debug.Log(listLength);
     }
 
@@ -71,50 +64,28 @@ public class GameSetting : MonoSingleton<GameSetting> {
 
     public void LoadScene(int level)
     {
+        //加载新场景前获取当前场景信息，发送一个退出事件
         ScenesInfo scenesInfo = new ScenesInfo()
         {
-            scenesIndex = SceneManager.GetActiveScene().buildIndex
+            scenesIndex = SceneManager.GetActiveScene().buildIndex //赋值方法一
         };
-        //scenesInfo.scenesIndex = SceneManager.GetActiveScene().buildIndex;
-
+        //scenesInfo.scenesIndex = SceneManager.GetActiveScene().buildIndex; //赋值方法二
         SendEvent(Const.E_ExitScenes, scenesInfo);
+
+        //加载新场景
         SceneManager.LoadScene(level);
     }
 
+    //新场景加载后，更改ScenesInfo中信息为当前场景信息，并发送进入场景事件
     private void OnLevelWasLoaded(int level)
     {
-        //通知CreatObjectController类开始创建游戏物品
-        if (level == 4)
-        {
-
-            StartCoroutine(ICreatObject());
-        }
-
+        //Debug.Log(level);
         ScenesInfo scenesInfo = new ScenesInfo()
         {
             scenesIndex = level
         };
         //scenesInfo.scenesIndex = level;
         SendEvent(Const.E_EnterScenes, scenesInfo);
-    }
-
-    IEnumerator ICreatObject()
-    {
-        while (true)//暂时取消物品自动生成
-        {
-            //if (player.isPlay&&!player.isPause)
-            {
-                int num = UnityEngine.Random.Range(0, 30);
-                if (num >= listLength)
-                {
-                    num = listLength - 1;
-                }
-                //Debug.Log(num);
-                go = objectList[num];
-                SendEvent(Const.E_CreatObject, go.name);
-                yield return new WaitForSeconds(1);
-            }
-        }
     }
 
     private void SendEvent(string eventName, object data=null)

@@ -15,6 +15,11 @@ public class PauseGameUI : View {
     public Text CoinText;
     public Text GoalText;
 
+    private void Start()
+    {
+        Hide();
+    }
+
     public override string Name
     {
         get

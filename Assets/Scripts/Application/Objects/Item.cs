@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Item : ReusableObject
 {
-    protected float time = 10;
+    //protected float time = 10;
     private int rotateSpeed = 80;
 
     protected override void Awake()
@@ -20,12 +20,12 @@ public class Item : ReusableObject
 
     public override void SetInfo()
     {
-        StartCoroutine(IReturn());
-        int z = Random.Range(100, 111);
-        posZ = player.position.z + z;
-        int x = nums[Random.Range(0, nums.Length)];
-        posX = x;
-        transform.position = new Vector3(posX, 0, posZ);
+        //StartCoroutine(IReturn());
+        //int z = Random.Range(100, 111);
+        //posZ = player.position.z + z;
+        //int x = nums[Random.Range(0, nums.Length)];
+        //posX = x;
+        //transform.position = new Vector3(posX, 0, posZ);
     }
 
     public override void ClearInfo()
@@ -44,11 +44,11 @@ public class Item : ReusableObject
         GameSetting.Instance.objectPool.ReturnObject(gameObject);
     }
 
-    IEnumerator IReturn()
-    {
-        yield return new WaitForSeconds(time);
-        GameSetting.Instance.objectPool.ReturnObject(gameObject);
-    }
+    //IEnumerator IReturn()
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    GameSetting.Instance.objectPool.ReturnObject(gameObject);
+    //}
 
     protected virtual void OnTriggerEnter(Collider other)
     {

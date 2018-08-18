@@ -38,18 +38,20 @@ public class BollHit : View {
             //other.SendMessage("GoalRecive");
             GameSetting.Instance.objectPool.ReturnObject(gameObject);
             //GameSetting.Instance.objectPool.ReturnObject(other.transform.parent.parent.gameObject);
-            other.transform.parent.parent.gameObject.SetActive(false);//暂时代替
+            //other.transform.parent.parent.gameObject.SetActive(false);//暂时代替
+            GameSetting.Instance.objectPool.ReturnObject(gameObject);
         }
         else if (other.tag == Tags.goalkeeper)
         {
             //Debug.Log("send message to fly");
-            other.SendMessage("Fly");
+            other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
             GameSetting.Instance.objectPool.ReturnObject(gameObject);
             GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Zhuang);
         }
-        else
+        else if(other.tag!=Tags.beforeTrigger && other.tag!=Tags.item && other.tag!=Tags.animationTrigger)
         {
-
+            GameSetting.Instance.objectPool.ReturnObject(gameObject);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Zhuang);
         }
     }
 }

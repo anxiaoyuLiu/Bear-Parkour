@@ -6,12 +6,12 @@ using System;
 public class PlayerController : View {
 
     //private CharacterController controller;
-    private InputDirection input;
     public int currentRoad = 1;
     private int targetRoad = 1;
     private float offsets = 0;
     private int changeSpeed = 10;
     public bool isChanging = false;
+    public float times = 1.2f;
     public bool isJumping = false;
     public bool isRolling = false;
     private GameModel gameModel;
@@ -48,16 +48,38 @@ public class PlayerController : View {
         run = GetComponent<Run>();
         magnetTrigger = GetComponentInChildren<SphereCollider>();
         magnetTrigger.enabled = false;
+        //gameModel.IsOver = false;
+        //gameModel.IsPause = false;
         //ball_fly.SetActive(false);
+    }
+
+    private void Start()
+    {
+        //gameModel.IsPause = true;
+        //SendEvent(Const.E_PauseGame);
     }
 
     private void Update()
     {
-        if (gameModel.IsPlay && !gameModel.IsPause && !run.isInHit)
+        if (!(gameModel.IsOver || gameModel.IsPause)) // && !run.isInHit
         {
-            GetInput();
+            //GetInput(); //键盘输入（移动端取消）
             MoveControl();
+            //Move(); //键盘测试方法
             UpdatePosition();
+        }
+
+        //运动状态判断是基于AnimationController中动画播放进度进行判断的，
+        //当动画因角色死亡等因数意外提前结束，就会使得isChange一直为true，
+        //导致控制输入失效。此处是对isChange值进行安全校验
+        if (isChanging)
+        {
+            times -= Time.deltaTime;
+            if (times < 0)
+            {
+                isChanging = false;
+                times = 1.2f;
+            }
         }
         //isPause = gameModel.IsPause;
         //isPlay = gameModel.IsPlay;
@@ -75,6 +97,94 @@ public class PlayerController : View {
 
     }
 
+    //触屏输入
+    //enum slideVector { nullVector, up, down, left, right };
+    private Vector2 touchFirst = Vector2.zero; //手指开始按下的位置
+    private Vector2 touchSecond = Vector2.zero; //手指拖动的位置
+    //private slideVector currentVector = slideVector.nullVector;//当前滑动方向
+    private InputDirection input = InputDirection.Null;
+    private float timer;//时间计数器  
+    public float offsetTime = 0.1f;//判断的时间间隔 
+    public float SlidingDistance = 80f;
+
+    void OnGUI()   // 滑动方法
+    {
+        if (Event.current.type == EventType.MouseDown)
+        //判断当前手指是按下事件 
+        {
+            touchFirst = Event.current.mousePosition;//记录开始按下的位置
+        }
+        if (Event.current.type == EventType.MouseDrag)
+        //判断当前手指是拖动事件
+        {
+            touchSecond = Event.current.mousePosition;
+
+            timer += Time.deltaTime;  //计时器
+
+            if (timer > offsetTime)
+            {
+                touchSecond = Event.current.mousePosition; //记录结束下的位置
+                Vector2 slideDirection = touchFirst - touchSecond;
+                float x = slideDirection.x;
+                float y = slideDirection.y;
+
+                if (y + SlidingDistance < x && y > -x - SlidingDistance)
+                {
+
+                    if (input == InputDirection.Left)
+                    {
+                        return;
+                    }
+
+                    //Debug.Log("right");
+
+                    input = InputDirection.Left;
+                }
+                else if (y > x + SlidingDistance && y < -x - SlidingDistance)
+                {
+                    if (input == InputDirection.Right)
+                    {
+                        return;
+                    }
+
+                    //Debug.Log("left");
+
+                    input = InputDirection.Right;
+                }
+                else if (y > x + SlidingDistance && y - SlidingDistance > -x)
+                {
+                    if (input == InputDirection.Up)
+                    {
+                        return;
+                    }
+
+                    //Debug.Log("up");
+
+                    input = InputDirection.Up;
+                }
+                else if (y + SlidingDistance < x && y < -x - SlidingDistance)
+                {
+                    if (input == InputDirection.Down)
+                    {
+                        return;
+                    }
+
+                    //Debug.Log("Down");
+
+                    input = InputDirection.Down;
+                }
+
+                timer = 0;
+                touchFirst = touchSecond;
+            }
+            if (Event.current.type == EventType.MouseUp)
+            {//滑动结束  
+                input = InputDirection.Null;
+            }
+        }
+    }
+
+    //键盘输入
     private void GetInput()
     {
         input = InputDirection.Null;
@@ -93,6 +203,37 @@ public class PlayerController : View {
         else if (Input.GetKeyDown(KeyCode.D))
         {
             input = InputDirection.Right;
+        }
+    }
+
+    private void Move()
+    {
+        if (Input.GetKeyDown(KeyCode.A) && !isChanging)
+        {
+            targetRoad = currentRoad - 1;
+            offsets = -2;
+            SendMessage("AnimaController", input);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
+        }
+        else if (Input.GetKeyDown(KeyCode.D) && !isChanging)
+        {
+            targetRoad = currentRoad + 1;
+            offsets = 2;
+            SendMessage("AnimaController", input);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
+        }
+        else if (Input.GetKeyDown(KeyCode.W) && !isChanging)
+        {
+            run.upSpeed = 5.8f;
+            isJumping = true;
+            SendMessage("AnimaController", input);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Jump);
+        }
+        else if (Input.GetKeyDown(KeyCode.S) && !isChanging)
+        {
+            isRolling = true;
+            SendMessage("AnimaController", input);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Huadong);
         }
     }
 
@@ -122,7 +263,7 @@ public class PlayerController : View {
                 }
                 break;
             case InputDirection.Left:
-                if (currentRoad > 0&&!isChanging)
+                if (currentRoad > 0 && !isChanging)
                 {
                     //Debug.Log("a");
                     targetRoad = currentRoad - 1;
@@ -132,7 +273,7 @@ public class PlayerController : View {
                 }
                 break;
             case InputDirection.Right:
-                if (currentRoad < 2&&!isChanging)
+                if (currentRoad < 2 && !isChanging)
                 {
                     //Debug.Log("d");
                     targetRoad = currentRoad + 1;
@@ -213,7 +354,7 @@ public class PlayerController : View {
         float timer = gameModel.StarsTime;
         while (timer > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 timer -= Time.deltaTime;
             }
@@ -247,7 +388,7 @@ public class PlayerController : View {
         float timer = gameModel.StarsTime;
         while (timer > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 timer -= Time.deltaTime;
             }
@@ -279,7 +420,7 @@ public class PlayerController : View {
         float timer = gameModel.StarsTime;
         while (timer > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 timer -= Time.deltaTime;
             }
@@ -313,7 +454,7 @@ public class PlayerController : View {
     {
         while (true)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 ball_fly.transform.Translate(transform.forward * 20 * Time.deltaTime);
                 yield return 0;

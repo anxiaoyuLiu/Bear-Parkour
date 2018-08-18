@@ -6,7 +6,7 @@ public class Goal : Item {
 
     private Animation anim_Goal;
     private Animation anim_Goalkeeper;
-    public GameObject goalkeeper;
+    private GameObject goalkeeper;
     //public GameObject ShouMenYuan;
     public GameObject QiuMen;
     //private bool isGoal = false;
@@ -14,6 +14,7 @@ public class Goal : Item {
     protected override void Awake()
     {
         //base.Awake();
+        goalkeeper = transform.Find("Root/goalkeeperRoot/goalkeeper").gameObject;
         anim_Goal = transform.Find("Root/QiuMen").GetComponent<Animation>();
         anim_Goalkeeper = goalkeeper.transform.Find("root/ShouMenYuan").GetComponent<Animation>();
         goalkeeper.SetActive(true);
@@ -29,18 +30,20 @@ public class Goal : Item {
 
     public override void SetInfo()
     {
-        base.SetInfo();
         QiuMen.transform.rotation = Quaternion.Euler(0, 0, 0);
+        goalkeeper = transform.Find("Root/goalkeeperRoot/goalkeeper").gameObject;
         goalkeeper.SetActive(true);
+        goalkeeper.transform.localPosition = new Vector3(0, 0, -0.5f);
         anim_Goal.Play(Const.goal_static);
         anim_Goalkeeper.Play(Const.standard);
-        goalkeeper.transform.localPosition = new Vector3(0, 0, -0.5f);
         //ShouMenYuan.transform.position = Vector3.zero;
     }
 
     public override void ClearInfo()
     {
         base.ClearInfo();
+        goalkeeper.SetActive(true);
+        goalkeeper.transform.localPosition = new Vector3(0, 0, -0.5f);
     }
 
     public void PlayerHit(object data=null)
@@ -60,7 +63,7 @@ public class Goal : Item {
             default:
                 break;
         }
-        //StartCoroutine(IReturn());//暂时无法回收
+        //StartCoroutine(IReturn());
     }
 
     //public void GoalRecive()
@@ -73,10 +76,10 @@ public class Goal : Item {
     //    base.OnTriggerEnter(other);
     //}
 
-    IEnumerator IReturn()
-    {
-        yield return new WaitForSeconds(1);
-        GameSetting.Instance.objectPool.ReturnObject(gameObject);
-    }
+    //IEnumerator IReturn()
+    //{
+    //    yield return new WaitForSeconds(1);
+    //    GameSetting.Instance.objectPool.ReturnObject(gameObject);
+    //}
 
 }

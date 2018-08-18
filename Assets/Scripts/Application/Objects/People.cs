@@ -5,15 +5,17 @@ using UnityEngine;
 public class People : Obstacle {
 
     private PeopleTrigger peopleTrigger;
-    private int speed_move = 8;
-    private bool isHit = false;
+    protected int speed_move = 8;
+    protected bool isHit = false;
     protected Animation anim;
+    GameModel gameModel;
 
     protected override void Awake()
     {
         base.Awake();
         peopleTrigger = GetComponentInChildren<PeopleTrigger>();
         anim = transform.GetComponentInChildren<Animation>();
+        gameModel = MVC.GetModel<GameModel>();
     }
 
     protected virtual void Update()
@@ -39,12 +41,12 @@ public class People : Obstacle {
     {
         GameSetting.Instance.objectPool.GetObject(Const.FX_ZhuangJi, effectParent);
         isHit = true;
-        StartCoroutine(Return());
+        StartCoroutine(IReturn());
     }
 
     public virtual void Move()
     {
-        if (peopleTrigger.isTrigger)
+        if (peopleTrigger.isTrigger && !gameModel.IsOver && !gameModel.IsPause)
         {
             transform.Translate(new Vector3(0, 0, speed_move * Time.deltaTime));
             anim.Play(Const.run);
@@ -60,9 +62,10 @@ public class People : Obstacle {
         }
     }
 
-    IEnumerator Return()
+    IEnumerator IReturn()
     {
         yield return new WaitForSeconds(1.2f);
+        isHit = false;
         GameSetting.Instance.objectPool.ReturnObject(gameObject);
     }
 }

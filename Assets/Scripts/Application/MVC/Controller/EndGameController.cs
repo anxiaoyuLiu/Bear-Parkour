@@ -6,15 +6,17 @@ using UnityEngine;
 
 public class EndGameController : Controller
 {
-    public override void Execute(object data)
+    public override void Execute(object data=null)
     {
         GameModel gameModel = GetModel<GameModel>();
-        gameModel.IsPlay = false;
+        GameOverUI gameOverUI = GetView<GameOverUI>();
+
+        gameOverUI.Show();
+        gameModel.IsOver = true;
+        //gameModel.IsPause = true;
+        //Time.timeScale = 0;
         GameSetting.Instance.playSound.PauseBgAudio();
         GameSetting.Instance.playSound.PauseStepAudio();
-        GameOverUI gameOverUI = GetView<GameOverUI>();
-        gameOverUI.Show();
-        //TODO:结束UI显示
     }
 
 }

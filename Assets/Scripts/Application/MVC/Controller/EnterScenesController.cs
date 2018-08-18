@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnterScenesController : Controller
 {
@@ -13,31 +14,57 @@ public class EnterScenesController : Controller
         switch (info.scenesIndex)
         {
             case 1:
+                RegisterView(GameObject.Find("MainMenuUI").GetComponent<MainMenuUI>());
+                GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_JieMian);
                 break;
             case 2:
+                RegisterView(GameObject.Find("ChangeLookingUI").GetComponent<ChangeLookingUI>());
+                GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_JieMian);
                 break;
             case 3:
+                RegisterView(GameObject.Find("Canvas").GetComponentInChildren<SkillShopUI>());
+                GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_JieMian);
                 break;
             case 4:
                 RegisterView(GameObject.FindWithTag(Tags.player).GetComponent<PlayerController>());
                 RegisterView(GameObject.FindWithTag(Tags.player).GetComponent<AnimationController>());
+                RegisterView(GameObject.FindWithTag(Tags.player).GetComponent<Run>());
                 RegisterView(GameObject.Find("Canvas").GetComponentInChildren<PlayingUI>());
                 RegisterView(GameObject.Find("Canvas").GetComponentInChildren<PauseGameUI>());
                 RegisterView(GameObject.Find("Canvas").GetComponentInChildren<ContinueGameUI>());
                 RegisterView(GameObject.Find("Canvas").GetComponentInChildren<FinalScoreUI>());
                 RegisterView(GameObject.Find("Canvas").GetComponentInChildren<GameOverUI>());
                 RegisterView(GameObject.FindWithTag(Tags.player).transform.Find("Ball_fly").GetComponent<BollHit>());
+                GameModel gameModel = GetModel<GameModel>();
+                gameModel.IsOver = false;
+                gameModel.IsPause = false;
+                GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_ZhanDou);
+                GameSetting.Instance.playSound.PlayStepAudio();
+
+                //PauseGameUI pauseGameUI = GetView<PauseGameUI>();
+                //if (pauseGameUI != null)
+                //{
+                //    pauseGameUI.Hide();
+                //}
+                //ContinueGameUI continueGameUI = GetView<ContinueGameUI>();
+                //if (continueGameUI != null)
+                //{
+                //    continueGameUI.Hide();
+                //}
+                //FinalScoreUI finalScoreUI = GetView<FinalScoreUI>();
+                //if (finalScoreUI != null)
+                //{
+                //    finalScoreUI.Hide();
+                //}
+                //GameOverUI gameOverUI = GetView<GameOverUI>();
+                //if (gameOverUI != null)
+                //{
+                //    gameOverUI.Hide();
+                //}
                 break;
             default:
                 break;
         }
-        PauseGameUI pauseGameUI = GetView<PauseGameUI>();
-        pauseGameUI.Hide();
-        ContinueGameUI continueGameUI = GetView<ContinueGameUI>();
-        continueGameUI.Hide();
-        FinalScoreUI finalScoreUI = GetView<FinalScoreUI>();
-        finalScoreUI.Hide();
-        GameOverUI gameOverUI = GetView<GameOverUI>();
-        gameOverUI.Hide();
+
     }
 }

@@ -13,6 +13,9 @@ public static class Const {
     public const string E_ContinueGame = "E_ContinueGame";
     public const string E_PayContinueGame = "E_PayContinueGame";
     public const string E_CloseEndGame = "E_CloseEndGame";
+    public const string E_BackHome = "E_BackHome";
+    public const string E_GoShopping = "E_GoShopping";
+    public const string E_Restart = "E_Restart";
 
     public const string E_UpdateDistance = "E_UpdateDistance";
     public const string E_UpdateCoin = "E_UpdateCoin";
@@ -22,6 +25,7 @@ public static class Const {
     public const string E_UpdateSkill_DoubleCoin = "E_UpdateSkill_DoubleCoin";
     public const string E_UpdateSkill_SpeedUp = "E_UpdateSkill_SpeedUp";
     public const string E_UpdateSkill_Magnet = "E_UpdateSkill_Magnet";
+    public const string E_BuySkill = "E_BuySkill";
     //public const string E_UpdateSkill_Shoot = "E_UpdateSkill_Shoot";
 
     public const string E_ReadyShoot = "E_ReadyShoot";
@@ -37,11 +41,15 @@ public static class Const {
     public const string V_PlayerController = "V_PlayerController";
     public const string V_AnimationController = "V_AnimationController";
     public const string V_PlayingUI = "V_PlayingUI";
+    public const string V_GamePlayingUI = "V_GamePlayingUI";
     public const string V_FinalScoreUI = "V_FinalScoreUI";
     public const string V_PauseGameUI = "V_PauseGameUI";
     public const string V_GameOverUI = "V_GameOverUI";
     public const string V_ContinueGameUI = "V_ContinueGameUI";
     public const string V_BollHit = "V_BollHit";
+    public const string V_SkillShopUI = "V_SkillShopUI";
+    public const string V_MainMenuUI = "V_MainMenuUI";
+    public const string V_ChangeLookingUI = "V_ChangeLookingUI";
 
     //Animation Name
     public const string run = "run";

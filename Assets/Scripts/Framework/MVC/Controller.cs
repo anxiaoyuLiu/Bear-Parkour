@@ -5,7 +5,7 @@ using System.Text;
 
 public abstract class Controller
 {
-    public abstract void Execute(object data);
+    public abstract void Execute(object data=null);
     //public abstract void Execute();
 
     protected T GetModel<T>()

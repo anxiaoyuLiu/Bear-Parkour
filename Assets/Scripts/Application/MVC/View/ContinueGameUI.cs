@@ -10,6 +10,11 @@ public class ContinueGameUI : View {
 
     private bool start = true;
 
+    private void Start()
+    {
+        Hide();
+    }
+
     public override string Name
     {
         get
@@ -47,6 +52,7 @@ public class ContinueGameUI : View {
         GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Countdown);
         while (time > 0)
         {
+            Debug.Log("time: " + time);
             time--;
             ShowImage.sprite = numberTexture[time];
             yield return new WaitForSeconds(1);

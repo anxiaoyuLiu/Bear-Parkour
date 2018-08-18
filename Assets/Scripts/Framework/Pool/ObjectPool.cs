@@ -12,7 +12,7 @@ public class ObjectPool : MonoSingleton<ObjectPool> {
     protected override void Awake()
     {
         base.Awake();
-        objectParent = GameObject.Find("Objects").transform;
+        objectParent = GameObject.Find("GameSetting").transform;
     }
 
     public GameObject GetObject(string name,Transform trans=null)//默认空值是为了方便object类型的创建
@@ -44,12 +44,19 @@ public class ObjectPool : MonoSingleton<ObjectPool> {
         pool.ReturnObject(go);
     }
 
+    //归还所有物品
     public void ReturnAll()
     {
         foreach (var p in pools.Values)
         {
             p.ReturnAll();
         }
+    }
+
+    //清空对象池（退出场景时调用）
+    public void ClearPools()
+    {
+        pools.Clear();
     }
 
     private void CreatPool(string name,Transform trans)

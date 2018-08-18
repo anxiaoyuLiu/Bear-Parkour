@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4864045430962840}
   - component: {fileID: 33203703194432770}
   - component: {fileID: 23276030417369212}
-  - component: {fileID: 95019344594459324}
   m_Layer: 0
   m_Name: Block_Zhong
   m_TagString: Untagged
@@ -39,7 +38,6 @@ GameObject:
   - component: {fileID: 4213421366831436}
   - component: {fileID: 33968914770122318}
   - component: {fileID: 23801032623628398}
-  - component: {fileID: 95507246268529240}
   m_Layer: 0
   m_Name: Block_JingGai
   m_TagString: Untagged
@@ -55,7 +53,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4373726216142958}
-  - component: {fileID: 114413528573449970}
   - component: {fileID: 65244841056874448}
   - component: {fileID: 54277470413699238}
   - component: {fileID: 114159267780928988}
@@ -216,40 +213,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.24, y: 1, z: 0.33}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!95 &95019344594459324
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1586244174674640}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 048122e4f0af37f4b85e46a9f903cebd, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95507246268529240
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1649891675105708}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a02f7c16b85531d40af23ba4acb92b8a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114159267780928988
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -259,16 +222,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2653f012d9cde6f40b2c268f397f5357, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114413528573449970
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1863238675224644}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
   m_Name: 
   m_EditorClassIdentifier: 

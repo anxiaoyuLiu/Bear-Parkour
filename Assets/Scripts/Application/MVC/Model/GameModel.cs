@@ -7,6 +7,7 @@ public class GameModel : Model {
     //状态
     private bool isPlay = true;
     private bool isPause = false;
+    private bool isOver = false;
     private bool isDoubleCoin = false;
     private bool isMagnet = false;
     private bool isSpeedUp = false;
@@ -18,17 +19,17 @@ public class GameModel : Model {
     private int addTime = 1;
 
     //游戏时长
-    private float times = 120;
+    private float times = 90;
 
     //角色全局数据（全局数据只在第一次进行游戏时进行初始化）
-    private int coin_Total = 5000;
+    private int coin_Total = 500;
     private int lv = 0;
     private int exp = 0;
     private int exp_Up = 500;
     private int speedUpSkillCount = 3;
     private int doubleCoinSkillCount = 3;
     private int magnetSkillCount = 3;
-    private float speed = 20;
+    private float speed = 15;
     private float maxSpeed = 50;
 
     //单局游戏数据（单局数据每一次进行游戏时都进行初始化）
@@ -37,6 +38,7 @@ public class GameModel : Model {
     private int coin = 0;
     private int goal = 0;
     private int payCoin = 500;
+    private float targetSpeed = 15;
 
     public override string Name
     {
@@ -370,6 +372,32 @@ public class GameModel : Model {
         set
         {
             exp_Up = value;
+        }
+    }
+
+    public float TargetSpeed
+    {
+        get
+        {
+            return targetSpeed;
+        }
+
+        set
+        {
+            targetSpeed = value;
+        }
+    }
+
+    public bool IsOver
+    {
+        get
+        {
+            return isOver;
+        }
+
+        set
+        {
+            isOver = value;
         }
     }
 }

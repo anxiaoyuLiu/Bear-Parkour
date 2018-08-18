@@ -15,6 +15,7 @@ public class PlayingUI : View
 
     public Text CoinText;
     public Text DistanceText;
+    //private Text DistanceText;
     public Slider TimeSlider;
     public Text TimeText;
 
@@ -37,18 +38,30 @@ public class PlayingUI : View
 
     private void Awake()
     {
+        //保留当前gameObject
+        //DontDestroyOnLoad(this.gameObject);
+
+        //DistanceText = transform.Find("Distance/DistanceText").GetComponent<Text>();
         SpeedUpSlider = transform.Find("SpeedUpSlider").GetComponent<Slider>();
         DoubleCoinSlider = transform.Find("DoubleCoinSlider").GetComponent<Slider>();
         MagnetSlider = transform.Find("MagnetSlider").GetComponent<Slider>();
         gameModel = GetModel<GameModel>();
         effectParent = GameObject.FindWithTag(Tags.player).transform;
+        CoinText.text = coin.ToString();
+        DistanceText.text = distance.ToString();
         SetButton();
         SetSlider();
     }
 
+    private void Start()
+    {
+        //Text distanceText = GameObject.Find("Canvas").transform.Find("PlayingUI/Distance/DistanceText").GetComponent<Text>();
+        Debug.Log(DistanceText.text);
+    }
+
     private void Update()
     {
-        if (gameModel.IsPlay && !gameModel.IsPause)
+        if (!(gameModel.IsOver || gameModel.IsPause))
         {
             Times -= Time.deltaTime;
         }
@@ -238,9 +251,9 @@ public class PlayingUI : View
         ShootSlider.value = 1;
         while (ShootSlider.value > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
-                ShootSlider.value -= Time.deltaTime * 0.25f;
+                ShootSlider.value -= Time.deltaTime * 0.65f;
             }
             yield return 0;
         }
@@ -300,6 +313,12 @@ public class PlayingUI : View
         GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
     }
 
+    //退出按键（测试用）
+    public void QuitButtonClick()
+    {
+        Application.Quit();
+    }
+
     //技能冷却图标处理
     public void ShowDoubleCoinCooling()
     {
@@ -312,7 +331,7 @@ public class PlayingUI : View
         float timer = gameModel.StarsTime;
         while (timer > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 timer -= Time.deltaTime;
                 DoubleCoinSlider.GetComponent<Slider>().value = timer / gameModel.StarsTime;
@@ -333,7 +352,7 @@ public class PlayingUI : View
         float timer = gameModel.SpeedUpTime - 2;
         while (timer > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 timer -= Time.deltaTime;
                 SpeedUpSlider.GetComponent<Slider>().value = timer / (gameModel.SpeedUpTime - 2);
@@ -354,7 +373,7 @@ public class PlayingUI : View
         float timer = gameModel.MagnetTime;
         while (timer > 0)
         {
-            if (gameModel.IsPlay && !gameModel.IsPause)
+            if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 timer -= Time.deltaTime;
                 MagnetSlider.GetComponent<Slider>().value = timer / gameModel.MagnetTime;

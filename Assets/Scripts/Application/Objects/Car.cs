@@ -7,11 +7,13 @@ public class Car : Obstacle {
     public bool canMove;
     private CarTrigger carTrigger;
     private int speed = 8;
+    GameModel gameModel;
 
     protected override void Awake()
     {
         base.Awake();
         carTrigger = GetComponentInChildren<CarTrigger>();
+        gameModel = MVC.GetModel<GameModel>();
     }
 
     private void Update()
@@ -27,7 +29,7 @@ public class Car : Obstacle {
 
     public override void HitPlayer()
     {
-        base.HitPlayer();
+        GameSetting.Instance.objectPool.ReturnObject(gameObject);
     }
 
     public override void SetInfo()
@@ -37,7 +39,7 @@ public class Car : Obstacle {
 
     public void Move()
     {
-        if (canMove && carTrigger.isTrigger)
+        if (canMove && carTrigger.isTrigger && !gameModel.IsOver && !gameModel.IsPause)
         {
             transform.Translate(new Vector3(0, 0, speed * Time.deltaTime));
         }

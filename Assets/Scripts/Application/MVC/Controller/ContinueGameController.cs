@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class ContinulGameController : Controller
 {
-
     public override void Execute(object data)
     {
         GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_ZhanDou);

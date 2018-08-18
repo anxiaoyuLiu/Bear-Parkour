@@ -39,7 +39,6 @@ GameObject:
   - component: {fileID: 4462947217144644}
   - component: {fileID: 33152107618796118}
   - component: {fileID: 23785439363007280}
-  - component: {fileID: 95478526305761264}
   m_Layer: 0
   m_Name: Block_JingGai
   m_TagString: Untagged
@@ -57,7 +56,6 @@ GameObject:
   - component: {fileID: 4340308449589848}
   - component: {fileID: 33964985744548150}
   - component: {fileID: 23312192738035522}
-  - component: {fileID: 95310197746841328}
   m_Layer: 0
   m_Name: Block_Gao
   m_TagString: Untagged
@@ -215,40 +213,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.24, y: 3, z: 0.33}
   m_Center: {x: 0, y: 1.5, z: 0}
---- !u!95 &95310197746841328
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1988206283729950}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 989f7bed5a2538b429b586a80bfcc32d, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!95 &95478526305761264
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1687002285060846}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: a02f7c16b85531d40af23ba4acb92b8a, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
 --- !u!114 &114575037743723070
 MonoBehaviour:
   m_ObjectHideFlags: 1

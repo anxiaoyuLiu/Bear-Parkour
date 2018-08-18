@@ -21,7 +21,6 @@ GameObject:
   - component: {fileID: 4667345038059908}
   - component: {fileID: 33406427858959796}
   - component: {fileID: 23099510322914842}
-  - component: {fileID: 95432411398824034}
   m_Layer: 0
   m_Name: Block_XiTieShi
   m_TagString: Untagged
@@ -37,7 +36,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4043636416249182}
-  - component: {fileID: 114435732272594844}
   - component: {fileID: 54840634517038222}
   - component: {fileID: 65216282112620882}
   - component: {fileID: 114472512798790462}
@@ -143,34 +141,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.55, y: 0.55, z: 0.55}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!95 &95432411398824034
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1299105038240998}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: d4fa08e1fe0af874896de36019c15223, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 1
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114435732272594844
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1324982448945106}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114472512798790462
 MonoBehaviour:
   m_ObjectHideFlags: 1

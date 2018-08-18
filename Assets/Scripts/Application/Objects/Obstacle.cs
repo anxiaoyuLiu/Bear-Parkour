@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Obstacle : ReusableObject {
 
-    protected float time = 8;
+    //protected float time = 8;
 
     protected override void Awake()
     {
@@ -13,13 +13,13 @@ public class Obstacle : ReusableObject {
 
     public override void SetInfo()
     {
-        StartCoroutine(IReturn());
-        int z = Random.Range(100, 110);
-        posZ = player.position.z + z;
-        //Debug.Log("Distance: " + gameModel.Distance);
-        int x = nums[Random.Range(0, nums.Length)];
-        posX = x;
-        transform.position = new Vector3(posX, 0, posZ);
+        //StartCoroutine(IReturn());
+        //int z = Random.Range(100, 110);
+        //posZ = player.position.z + z;
+        ////Debug.Log("Distance: " + gameModel.Distance);
+        //int x = nums[Random.Range(0, nums.Length)];
+        //posX = x;
+        //transform.position = new Vector3(posX, 0, posZ);
     }
 
     public override void ClearInfo()
@@ -30,16 +30,23 @@ public class Obstacle : ReusableObject {
     public override void HitPlayer()
     {
         //创建特效
-        GameSetting.Instance.objectPool.GetObject(Const.FX_ZhuangJi, effectParent);
+        //GameSetting.Instance.objectPool.GetObject(Const.FX_ZhuangJi, effectParent);
         //播放撞击音效
         //GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);//转到碰撞判断处播放
         //回收
         GameSetting.Instance.objectPool.ReturnObject(gameObject);
+        //StartCoroutine(IReturn());
     }
 
     IEnumerator IReturn()
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(0.1f);
         GameSetting.Instance.objectPool.ReturnObject(gameObject);
     }
+
+    //IEnumerator IReturn()
+    //{
+    //    yield return new WaitForSeconds(time);
+    //    GameSetting.Instance.objectPool.ReturnObject(gameObject);
+    //}
 }

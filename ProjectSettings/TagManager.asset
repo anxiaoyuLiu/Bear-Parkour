@@ -20,6 +20,7 @@ TagManager:
   - Ball
   - Test
   - AnimationTrigger
+  - Car
   layers:
   - Default
   - TransparentFX

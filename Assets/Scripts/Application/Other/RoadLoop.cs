@@ -2,11 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class RoadLoop : ReusableObject {
+public class RoadLoop : MonoBehaviour {
 
     public GameObject CurrentRoad;
     public GameObject NextRoad;
     private GameObject parent;
+    private Transform ItemParent;
 
     private void Start()
     {
@@ -18,7 +19,11 @@ public class RoadLoop : ReusableObject {
         }
 
         CurrentRoad = GameSetting.Instance.objectPool.GetObject("Road01", parent.transform);
+        ItemParent = CurrentRoad.transform.Find("Root");
+        CreatItem(ItemParent);
         NextRoad = GameSetting.Instance.objectPool.GetObject("Road02", parent.transform);
+        ItemParent = NextRoad.transform.Find("Root");
+        CreatItem(ItemParent);
         NextRoad.transform.position = CurrentRoad.transform.position + new Vector3(0, 0, 160);
     }
 
@@ -37,16 +42,23 @@ public class RoadLoop : ReusableObject {
             CurrentRoad = NextRoad;
             NextRoad = GameSetting.Instance.objectPool.GetObject("Road0"+str, parent.transform);
             NextRoad.transform.position = CurrentRoad.transform.position + new Vector3(0, 0, 160);
+            ItemParent = NextRoad.transform.Find("Root");
+            CreatItem(ItemParent);
         }
     }
 
-    public override void SetInfo()
+    public void CreatItem(Transform parent)
     {
-        
-    }
-
-    public override void ClearInfo()
-    {
-        
+        Patternmanager patternmanager = Patternmanager.Instance;
+        Pattern pattern = patternmanager.PatternList[Random.Range(0, patternmanager.PatternList.Count)];
+        if(pattern !=null && pattern.ItemList.Count > 0)
+        {
+            foreach (var item in pattern.ItemList)
+            {
+                GameObject go = GameSetting.Instance.objectPool.GetObject(item.name,parent);
+                go.transform.parent = parent;
+                go.transform.localPosition = item.pos;
+            }
+        }
     }
 }

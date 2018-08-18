@@ -10,14 +10,14 @@ public class Run : View {
     //private float maxSpeed = 40;
     private float targetSpeed;
     private float distance = 0;
-    public bool isInHit = false;
+    //public bool isInHit = false;
     private int addSpeed = 8;
     private GameModel gameModel;
     //Transform Blocks;
     public float upSpeed = 0;
     //private float gravity = -9.8f;
     private float gravity = -14;
-    //private IEnumerator SpeedIEnumerator;
+    private IEnumerator SpeedIEnumerator;
 
     public override string Name
     {
@@ -52,7 +52,7 @@ public class Run : View {
 
     void Update()
     {
-        if (gameModel.IsPlay && !gameModel.IsPause)
+        if (!(gameModel.IsOver || gameModel.IsPause))
         {
             controller.Move(Vector3.forward * gameModel.Speed * Time.deltaTime);
             gameModel.Distance = (int)transform.position.z;
@@ -81,8 +81,8 @@ public class Run : View {
     //    {
     //        StopCoroutine(SpeedIEnumerator);
     //    }
-    //    SpeedIEnumerator = IChangeSpeed();
-    //    StartCoroutine(IChangeSpeed());
+    //    SpeedIEnumerator = IReduceSpeed();
+    //    StartCoroutine(IReduceSpeed());
     //}
 
     //IEnumerator IChangeSpeed()
@@ -101,10 +101,11 @@ public class Run : View {
 
     private void AddSpeed()
     {
-        if (transform.position.z - distance > 500)
+        if (transform.position.z - distance > 600)
         {
             distance = transform.position.z;
-            gameModel.Speed += 5;
+            gameModel.Speed += 2;
+            gameModel.TargetSpeed += 2;
         }
     }
 
@@ -118,39 +119,65 @@ public class Run : View {
         if (other.tag == Tags.smallBlock) //小路障
         {
             other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
-            if (isInHit)
+
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //isInHit = true;
+            if (SpeedIEnumerator != null)
             {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
-                SendEvent(Const.E_EndGame);
+                StopCoroutine(SpeedIEnumerator);
             }
-            else
-            {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
-                isInHit = true;
-                StartCoroutine(IReduceSpeed());
-            }
+            SpeedIEnumerator = IReduceSpeed();
+            StartCoroutine(SpeedIEnumerator);
+            //StartCoroutine(IReduceSpeed());
+            //if (isInHit)
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
+            //    SendEvent(Const.E_EndGame);
+            //}
+            //else
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //    isInHit = true;
+            //    StartCoroutine(IReduceSpeed());
+            //}
         }
         else if (other.tag == Tags.bigBlock) //中大路障做相同处理
         {
             if (playerController.isRolling) return;
             other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
-            if (isInHit)
+
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //isInHit = true;
+            if (SpeedIEnumerator != null)
             {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
-                SendEvent(Const.E_EndGame);
+                StopCoroutine(SpeedIEnumerator);
             }
-            else
-            {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
-                isInHit = true;
-                StartCoroutine(IReduceSpeed());
-            }
+            SpeedIEnumerator = IReduceSpeed();
+            StartCoroutine(SpeedIEnumerator);
+            //StartCoroutine(IReduceSpeed());
+            //if (isInHit)
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
+            //    SendEvent(Const.E_EndGame);
+            //}
+            //else
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //    isInHit = true;
+            //    StartCoroutine(IReduceSpeed());
+            //}
         }
         else if (other.tag == Tags.deathBlock) //死亡障碍物
         {
+            SendEvent(Const.E_EndGame);
             other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
             GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
+        }
+        else if (other.tag == Tags.car) //汽车
+        {
             SendEvent(Const.E_EndGame);
+            other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
         }
         else if (other.tag == Tags.beforeTrigger) //汽车和人移动触发器
         {
@@ -159,18 +186,28 @@ public class Run : View {
         }
         else if (other.tag == Tags.people) //人物
         {
-            if (isInHit)
+            other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //isInHit = true;
+            if (SpeedIEnumerator != null)
             {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
-                SendEvent(Const.E_EndGame);
+                StopCoroutine(SpeedIEnumerator);
             }
-            else
-            {
-                other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
-                isInHit = true;
-                StartCoroutine(IReduceSpeed());
-            }
+            SpeedIEnumerator = IReduceSpeed();
+            StartCoroutine(SpeedIEnumerator);
+            //StartCoroutine(IReduceSpeed());
+            //if (isInHit)
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
+            //    SendEvent(Const.E_EndGame);
+            //}
+            //else
+            //{
+            //    other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //    isInHit = true;
+            //    StartCoroutine(IReduceSpeed());
+            //}
         }
         else if (other.tag == Tags.shootTrigger) //进入射门范围
         {
@@ -181,46 +218,66 @@ public class Run : View {
         }
         else if (other.tag == Tags.goal) //球门
         {
-            if (isInHit)
+            other.transform.parent.parent.SendMessage("PlayerHit", playerController.currentRoad);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //isInHit = true;
+            if (SpeedIEnumerator != null)
             {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
-                SendEvent(Const.E_EndGame);
+                StopCoroutine(SpeedIEnumerator);
             }
-            else
-            {
-                other.transform.parent.parent.SendMessage("PlayerHit", playerController.currentRoad);
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
-                isInHit = true;
-                StartCoroutine(IReduceSpeed());
-            }
+            SpeedIEnumerator = IReduceSpeed();
+            StartCoroutine(SpeedIEnumerator);
+            //StartCoroutine(IReduceSpeed());
+            //if (isInHit)
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
+            //    SendEvent(Const.E_EndGame);
+            //}
+            //else
+            //{
+            //    other.transform.parent.parent.SendMessage("PlayerHit", playerController.currentRoad);
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //    isInHit = true;
+            //    StartCoroutine(IReduceSpeed());
+            //}
         }
         else if (other.tag == Tags.goalkeeper) //守门员
         {
-            if (isInHit)
+            other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //isInHit = true;
+            if (SpeedIEnumerator != null)
             {
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
-                SendEvent(Const.E_EndGame);
+                StopCoroutine(SpeedIEnumerator);
             }
-            else
-            {
-                other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
-                GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
-                isInHit = true;
-                StartCoroutine(IReduceSpeed());
-            }
+            SpeedIEnumerator = IReduceSpeed();
+            StartCoroutine(SpeedIEnumerator);
+            //StartCoroutine(IReduceSpeed());
+            //if (isInHit)
+            //{
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
+            //    SendEvent(Const.E_EndGame);
+            //}
+            //else
+            //{
+            //    other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            //    GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);
+            //    isInHit = true;
+            //    StartCoroutine(IReduceSpeed());
+            //}
         }
     }
 
     IEnumerator IReduceSpeed()
     {
-        targetSpeed = gameModel.Speed;
+        targetSpeed = gameModel.TargetSpeed;
         gameModel.Speed = 3;
         while (gameModel.Speed < targetSpeed)
         {
             gameModel.Speed += Time.deltaTime * addSpeed;
             yield return 0;
         }
-        isInHit = false;
+        //isInHit = false;
     }
 
     public void JumpAndDrop()

@@ -24,6 +24,11 @@ public class GameOverUI : View {
         showMessage.SetActive(false);
     }
 
+    private void Start()
+    {
+        Hide();
+    }
+
     public void Hide()
     {
         gameObject.SetActive(false);
@@ -59,6 +64,8 @@ public class GameOverUI : View {
     public void CloseButtonClick()
     {
         Hide();
+        gameModel.IsOver = true;
+        //Time.timeScale = 1;
         SendEvent(Const.E_CloseEndGame);
     }
 

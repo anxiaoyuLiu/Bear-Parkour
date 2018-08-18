@@ -26,6 +26,11 @@ public class FinalScoreUI : View {
         expSlider.value = value;
     }
 
+    private void Start()
+    {
+        Hide();
+    }
+
     public override string Name
     {
         get
@@ -49,9 +54,9 @@ public class FinalScoreUI : View {
         distanceText.text = gameModel.Distance.ToString();
         coinText.text = gameModel.Coin.ToString();
         goalText.text = gameModel.Goal.ToString();
-        gameModel.Score = gameModel.Distance * 6000 + gameModel.Coin * 50 + gameModel.Goal * 200;
+        gameModel.Score = gameModel.Distance * 6 + gameModel.Coin * 50 + gameModel.Goal * 200;
         scoreText.text = gameModel.Score.ToString();
-        gameModel.Exp = gameModel.Score / 100;
+        gameModel.Exp = gameModel.Score / 50;
         StartCoroutine(IShowExpSliderUp());
     }
 
@@ -83,17 +88,19 @@ public class FinalScoreUI : View {
 
     public void HomeButtonClick()
     {
-
+        //SendEvent(Const.E_BackHome);
     }
 
     public void ShopButtonClick()
     {
-
+        //SendEvent(Const.E_GoShopping);
+        GameSetting.Instance.LoadScene(3);
     }
 
     public void RestartButtonClick()
     {
-
+        //SendEvent(Const.E_Restart);
+        GameSetting.Instance.LoadScene(4);
     }
 
     public override void HandleEvent(string eventName, object data)

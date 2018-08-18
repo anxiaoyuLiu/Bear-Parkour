@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class BollHitOthers : MonoBehaviour {
 
-    Transform effectParent;
+    //Transform effectParent;
 
     private void Awake()
     {
-        effectParent = GameObject.Find("Effects").transform;
+        //effectParent = GameObject.Find("Effects").transform;
     }
 
     private void Start()
