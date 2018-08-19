@@ -26,18 +26,21 @@ public class EnterScenesController : Controller
                 GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_JieMian);
                 break;
             case 4:
-                RegisterView(GameObject.FindWithTag(Tags.player).GetComponent<PlayerController>());
-                RegisterView(GameObject.FindWithTag(Tags.player).GetComponent<AnimationController>());
-                RegisterView(GameObject.FindWithTag(Tags.player).GetComponent<Run>());
-                RegisterView(GameObject.Find("Canvas").GetComponentInChildren<PlayingUI>());
-                RegisterView(GameObject.Find("Canvas").GetComponentInChildren<PauseGameUI>());
-                RegisterView(GameObject.Find("Canvas").GetComponentInChildren<ContinueGameUI>());
-                RegisterView(GameObject.Find("Canvas").GetComponentInChildren<FinalScoreUI>());
-                RegisterView(GameObject.Find("Canvas").GetComponentInChildren<GameOverUI>());
-                RegisterView(GameObject.FindWithTag(Tags.player).transform.Find("Ball_fly").GetComponent<BollHit>());
+                //PlayerController playerController = GameObject.FindWithTag(Tags.test).GetComponent<PlayerController>();
+                RegisterView(GameObject.FindWithTag(Tags.test).GetComponent<PlayerController>());
+                RegisterView(GameObject.FindWithTag(Tags.test).GetComponent<AnimationController>());
+                RegisterView(GameObject.FindWithTag(Tags.test).GetComponent<Run>());
+                RegisterView(GameObject.FindWithTag(Tags.canvas).GetComponentInChildren<PlayingUI>());
+                RegisterView(GameObject.Find(Tags.canvas).GetComponentInChildren<PauseGameUI>());
+                RegisterView(GameObject.Find(Tags.canvas).GetComponentInChildren<ContinueGameUI>());
+                RegisterView(GameObject.Find(Tags.canvas).GetComponentInChildren<FinalScoreUI>());
+                RegisterView(GameObject.Find(Tags.canvas).GetComponentInChildren<GameOverUI>());
+                RegisterView(GameObject.FindWithTag(Tags.test).transform.Find("Ball_fly").GetComponent<BollHit>());
                 GameModel gameModel = GetModel<GameModel>();
-                gameModel.IsOver = false;
+                gameModel.IsOver = false; 
                 gameModel.IsPause = false;
+                gameModel.Coin = 0;
+                gameModel.Distance = 0;
                 GameSetting.Instance.playSound.PlayBgAudio(Const.Bgm_ZhanDou);
                 GameSetting.Instance.playSound.PlayStepAudio();
 

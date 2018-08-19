@@ -19,7 +19,7 @@ public class Goal : Item {
         anim_Goalkeeper = goalkeeper.transform.Find("root/ShouMenYuan").GetComponent<Animation>();
         goalkeeper.SetActive(true);
         anim_Goal.Play(Const.goal_static);
-        player = GameObject.FindWithTag(Tags.player).transform;
+        player = GameObject.FindWithTag(Tags.test).transform;
         //isGoal = false;
     }
 
@@ -64,6 +64,12 @@ public class Goal : Item {
                 break;
         }
         //StartCoroutine(IReturn());
+    }
+
+    public void Return()
+    {
+        //Debug.Log("goal");
+        GameSetting.Instance.objectPool.ReturnObject(gameObject);
     }
 
     //public void GoalRecive()

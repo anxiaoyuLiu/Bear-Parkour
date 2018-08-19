@@ -80,9 +80,22 @@ public class PauseGameUI : View {
         gameObject.SetActive(true);
     }
 
+    public void HomeButtonClick()
+    {
+        GameSetting.Instance.LoadScene(1);
+        GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
+    }
+
     public void ContinueGameClick()
     {
         SendEvent(Const.E_ContinueGame,wait);
+        GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
+    }
+
+    public void QuitGameClick()
+    {
+        Application.Quit();
+        GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
     }
 
     public override void RegisterEventList()

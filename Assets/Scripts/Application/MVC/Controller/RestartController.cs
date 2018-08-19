@@ -7,7 +7,7 @@ public class RestartController : Controller {
 
     public override void Execute(object data)
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(4);
     }
 
 }

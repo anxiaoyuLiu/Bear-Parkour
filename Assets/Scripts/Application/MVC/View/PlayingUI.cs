@@ -31,10 +31,18 @@ public class PlayingUI : View
 
     public Button ShootButton;
     public Slider ShootSlider;
+    public GameObject Mask;
 
     private GameModel gameModel;
 
     private Transform effectParent;
+
+    public MeshRenderer footballMesh;
+    public SkinnedMeshRenderer playerMesh;
+    public Material[] footballMaterial;
+    public Material[] player1Material;
+    public Material[] player2Material;
+    public Material[] player3Material;
 
     private void Awake()
     {
@@ -46,7 +54,7 @@ public class PlayingUI : View
         DoubleCoinSlider = transform.Find("DoubleCoinSlider").GetComponent<Slider>();
         MagnetSlider = transform.Find("MagnetSlider").GetComponent<Slider>();
         gameModel = GetModel<GameModel>();
-        effectParent = GameObject.FindWithTag(Tags.player).transform;
+        effectParent = GameObject.FindWithTag(Tags.test).transform;
         CoinText.text = coin.ToString();
         DistanceText.text = distance.ToString();
         SetButton();
@@ -56,7 +64,9 @@ public class PlayingUI : View
     private void Start()
     {
         //Text distanceText = GameObject.Find("Canvas").transform.Find("PlayingUI/Distance/DistanceText").GetComponent<Text>();
-        Debug.Log(DistanceText.text);
+        //Debug.Log(DistanceText.text);
+        SetPlayerLooking();
+        SetFootballLooking();
     }
 
     private void Update()
@@ -206,34 +216,34 @@ public class PlayingUI : View
         if (gameModel.SpeedUpSkillCount > 0)
         {
             SpeedUpButton.interactable = true;
-            transform.Find("SpeedUpButton/SpeedUpButtonMask").gameObject.SetActive(false);
+            transform.Find("SpeedUpButton/Mask").gameObject.SetActive(false);
         }
         else
         {
             SpeedUpButton.interactable = false;
-            transform.Find("SpeedUpButton/SpeedUpButtonMask").gameObject.SetActive(true);
+            transform.Find("SpeedUpButton/Mask").gameObject.SetActive(true);
         }
 
         if (gameModel.DoubleCoinSkillCount > 0)
         {
             DoubleCoinButton.interactable = true;
-            transform.Find("DoubleCoinButton/DoubleCoinButtonMask").gameObject.SetActive(false);
+            transform.Find("DoubleCoinButton/Mask").gameObject.SetActive(false);
         }
         else
         {
             DoubleCoinButton.interactable = false;
-            transform.Find("DoubleCoinButton/DoubleCoinButtonMask").gameObject.SetActive(true);
+            transform.Find("DoubleCoinButton/Mask").gameObject.SetActive(true);
         }
 
         if (gameModel.MagnetSkillCount > 0)
         {
             MagnetButton.interactable = true;
-            transform.Find("MagnetButton/MagnetButtonMask").gameObject.SetActive(false);
+            transform.Find("MagnetButton/Mask").gameObject.SetActive(false);
         }
         else
         {
             MagnetButton.interactable = false;
-            transform.Find("MagnetButton/MagnetButtonMask").gameObject.SetActive(true);
+            transform.Find("MagnetButton/Mask").gameObject.SetActive(true);
         }
     }
 
@@ -243,6 +253,7 @@ public class PlayingUI : View
     private void UpdateShootButtonAndSlider()
     {
         ShootButton.interactable = true;
+        Mask.SetActive(false);
         StartCoroutine(IShootTime());
     }
 
@@ -258,6 +269,7 @@ public class PlayingUI : View
             yield return 0;
         }
         ShootButton.interactable = false;
+        Mask.SetActive(true);
     }
 
     //按键处理
@@ -416,6 +428,94 @@ public class PlayingUI : View
             //case Const.E_UpdateSkill_SpeedUp:
             //    //Times = gameModel.Times;
             //    break;
+            default:
+                break;
+        }
+    }
+    //设置角色皮肤
+    private void SetPlayerLooking()
+    {
+        switch (gameModel.PlayerIndex)
+        {
+            case 0:
+                switch (gameModel.ClothesIndex)
+                {
+                    case 0:
+                        playerMesh.material = player1Material[0];
+                        break;
+                    case 1:
+                        playerMesh.material = player1Material[1];
+                        break;
+                    case 2:
+                        playerMesh.material = player1Material[2];
+                        break;
+                    case 3:
+                        playerMesh.material = player1Material[3];
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 1:
+                switch (gameModel.ClothesIndex)
+                {
+                    case 0:
+                        playerMesh.material = player2Material[0];
+                        break;
+                    case 1:
+                        playerMesh.material = player2Material[1];
+                        break;
+                    case 2:
+                        playerMesh.material = player2Material[2];
+                        break;
+                    case 3:
+                        playerMesh.material = player2Material[3];
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            case 2:
+                switch (gameModel.ClothesIndex)
+                {
+                    case 0:
+                        playerMesh.material = player3Material[0];
+                        break;
+                    case 1:
+                        playerMesh.material = player3Material[1];
+                        break;
+                    case 2:
+                        playerMesh.material = player3Material[2];
+                        break;
+                    case 3:
+                        playerMesh.material = player3Material[3];
+                        break;
+                    default:
+                        break;
+                }
+                break;
+            default:
+                break;
+        }
+    }
+
+    //设置足球皮肤
+    public void SetFootballLooking()
+    {
+        switch (gameModel.FootballIndex)
+        {
+            case 0:
+                footballMesh.material = footballMaterial[0];
+                break;
+            case 1:
+                footballMesh.material = footballMaterial[1];
+                break;
+            case 2:
+                footballMesh.material = footballMaterial[2];
+                break;
+            case 3:
+                footballMesh.material = footballMaterial[3];
+                break;
             default:
                 break;
         }

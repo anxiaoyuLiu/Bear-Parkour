@@ -30,6 +30,12 @@ public class MainMenuUI : View {
         GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
     }
 
+    public void QuitGameButtonClick()
+    {
+        Application.Quit();
+        GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Button);
+    }
+
     public override void HandleEvent(string eventName, object data)
     {
         

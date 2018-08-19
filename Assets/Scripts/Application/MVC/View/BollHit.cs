@@ -8,7 +8,7 @@ public class BollHit : View {
 
     private void Awake()
     {
-        effectParent = GameObject.Find("Effects").transform;
+        effectParent = GameObject.FindWithTag(Tags.test).transform;
     }
 
     private void Start()
@@ -40,6 +40,7 @@ public class BollHit : View {
             //GameSetting.Instance.objectPool.ReturnObject(other.transform.parent.parent.gameObject);
             //other.transform.parent.parent.gameObject.SetActive(false);//暂时代替
             GameSetting.Instance.objectPool.ReturnObject(gameObject);
+            other.transform.parent.parent.SendMessage("Return",SendMessageOptions.DontRequireReceiver);
         }
         else if (other.tag == Tags.goalkeeper)
         {

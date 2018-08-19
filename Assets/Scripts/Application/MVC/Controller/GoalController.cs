@@ -16,7 +16,8 @@ public class GoalController : Controller {
         playerController.StopIShootBall();
 
         //4.播放特效
-        GameSetting.Instance.objectPool.GetObject(Const.FX_Goal, data as Transform);
+        GameObject go = GameSetting.Instance.objectPool.GetObject(Const.FX_Goal, data as Transform);
+        go.transform.localPosition = new Vector3(0, 10, -4);
 
         //5.播放进球音效
         GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Goal);

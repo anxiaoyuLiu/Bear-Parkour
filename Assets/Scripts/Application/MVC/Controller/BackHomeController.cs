@@ -7,6 +7,6 @@ public class BackHomeController : Controller
 {
     public override void Execute(object data)
     {
-        
+        GameSetting.Instance.LoadScene(1);
     }
 }

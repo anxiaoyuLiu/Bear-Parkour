@@ -13,7 +13,7 @@ public class Effect : ReusableObject
 
     public override void SetInfo()
     {
-        transform.position = GameObject.FindWithTag(Tags.player).transform.position;
+        transform.position = GameObject.FindWithTag(Tags.test).transform.position;
         StartCoroutine(IReturn());
     }
 

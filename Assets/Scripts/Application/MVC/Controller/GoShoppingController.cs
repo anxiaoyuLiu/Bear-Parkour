@@ -7,6 +7,6 @@ public class GoShoppingController : Controller
 {
     public override void Execute(object data)
     {
-        
+        GameSetting.Instance.LoadScene(3);
     }
 }

@@ -4,6 +4,11 @@ using UnityEngine;
 
 public class GameModel : Model {
 
+    //角色外观信息
+    private int footballIndex = 0;
+    private int playerIndex = 0;
+    private int clothesIndex = 0;
+
     //状态
     private bool isPlay = true;
     private bool isPause = false;
@@ -22,7 +27,7 @@ public class GameModel : Model {
     private float times = 90;
 
     //角色全局数据（全局数据只在第一次进行游戏时进行初始化）
-    private int coin_Total = 500;
+    private int coin_Total = 5000;
     private int lv = 0;
     private int exp = 0;
     private int exp_Up = 500;
@@ -398,6 +403,45 @@ public class GameModel : Model {
         set
         {
             isOver = value;
+        }
+    }
+
+    public int FootballIndex
+    {
+        get
+        {
+            return footballIndex;
+        }
+
+        set
+        {
+            footballIndex = value;
+        }
+    }
+
+    public int PlayerIndex
+    {
+        get
+        {
+            return playerIndex;
+        }
+
+        set
+        {
+            playerIndex = value;
+        }
+    }
+
+    public int ClothesIndex
+    {
+        get
+        {
+            return clothesIndex;
+        }
+
+        set
+        {
+            clothesIndex = value;
         }
     }
 }

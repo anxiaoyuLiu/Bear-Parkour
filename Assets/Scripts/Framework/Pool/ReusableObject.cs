@@ -17,7 +17,7 @@ public abstract class ReusableObject : MonoBehaviour, IReusable
     protected virtual void Awake()
     {
         effectParent = GameObject.Find("Effects").transform;
-        player = GameObject.FindWithTag(Tags.player).transform;
+        player = GameObject.FindWithTag(Tags.test).transform;
     }
 
     public virtual void HitPlayer()

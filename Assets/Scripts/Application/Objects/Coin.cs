@@ -31,7 +31,7 @@ public class Coin : Item {
 
     protected override void OnTriggerEnter(Collider other)
     {
-        if (other.tag == Tags.player)
+        if (other.tag == Tags.test)
         {
             HitPlayer();
             //发消息

@@ -58,6 +58,7 @@ public class FinalScoreUI : View {
         scoreText.text = gameModel.Score.ToString();
         gameModel.Exp = gameModel.Score / 50;
         StartCoroutine(IShowExpSliderUp());
+        gameModel.Coin_Total += gameModel.Coin;
     }
 
     IEnumerator IShowExpSliderUp()
@@ -88,19 +89,24 @@ public class FinalScoreUI : View {
 
     public void HomeButtonClick()
     {
-        //SendEvent(Const.E_BackHome);
+        SendEvent(Const.E_BackHome);
     }
 
     public void ShopButtonClick()
     {
-        //SendEvent(Const.E_GoShopping);
-        GameSetting.Instance.LoadScene(3);
+        SendEvent(Const.E_GoShopping);
+        //GameSetting.Instance.LoadScene(3);
     }
 
     public void RestartButtonClick()
     {
-        //SendEvent(Const.E_Restart);
-        GameSetting.Instance.LoadScene(4);
+        SendEvent(Const.E_Restart);
+        //GameSetting.Instance.LoadScene(4);
+    }
+
+    public void QuitButtonClick()
+    {
+        Application.Quit();
     }
 
     public override void HandleEvent(string eventName, object data)

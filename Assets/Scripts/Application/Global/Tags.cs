@@ -20,4 +20,5 @@ public static class Tags {
     public static string car = "Car";
     public static string item = "Item";
     public static string animationTrigger = "AnimationTrigger";
+    public static string canvas = "Canvas";
 }

@@ -21,6 +21,7 @@ TagManager:
   - Test
   - AnimationTrigger
   - Car
+  - Canvas
   layers:
   - Default
   - TransparentFX

@@ -98,7 +98,7 @@ public class SkillShopUI : View
     public override void RegisterEventList()
     {
         base.RegisterEventList();
-        //eventList.Add(Const.E_UpdateCoin);
+        eventList.Add(Const.E_UpdateCoin);
     }
 
     public override void HandleEvent(string eventName, object data)
@@ -106,7 +106,7 @@ public class SkillShopUI : View
         switch (eventName)
         {
             case Const.E_UpdateCoin:
-                //UpdateCoin();
+                UpdateCoin();
                 break;
             default:
                 break;

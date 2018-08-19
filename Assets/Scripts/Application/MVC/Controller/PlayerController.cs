@@ -67,6 +67,7 @@ public class PlayerController : View {
             MoveControl();
             //Move(); //键盘测试方法
             UpdatePosition();
+            GetTouch();//触屏输入
         }
 
         //运动状态判断是基于AnimationController中动画播放进度进行判断的，
@@ -103,86 +104,192 @@ public class PlayerController : View {
     private Vector2 touchSecond = Vector2.zero; //手指拖动的位置
     //private slideVector currentVector = slideVector.nullVector;//当前滑动方向
     private InputDirection input = InputDirection.Null;
-    private float timer;//时间计数器  
-    public float offsetTime = 0.1f;//判断的时间间隔 
-    public float SlidingDistance = 80f;
+    private float timer = 0;//时间计数器  
+    public float offsetTime = 0.12f;//判断的时间间隔 
+    //public float SlidingDistance = 80f;
+    private bool setInput = false;//保证一次手势进行一次赋值
 
-    void OnGUI()   // 滑动方法
+    private void GetTouch()
     {
-        if (Event.current.type == EventType.MouseDown)
-        //判断当前手指是按下事件 
+        if (Input.GetMouseButtonDown(0))
         {
-            touchFirst = Event.current.mousePosition;//记录开始按下的位置
+            touchFirst = Input.mousePosition;
         }
-        if (Event.current.type == EventType.MouseDrag)
-        //判断当前手指是拖动事件
+        if (Input.GetMouseButton(0))
         {
-            touchSecond = Event.current.mousePosition;
-
-            timer += Time.deltaTime;  //计时器
-
-            if (timer > offsetTime)
+            timer += Time.deltaTime;
+            if (timer > offsetTime && !setInput)
             {
-                touchSecond = Event.current.mousePosition; //记录结束下的位置
-                Vector2 slideDirection = touchFirst - touchSecond;
-                float x = slideDirection.x;
-                float y = slideDirection.y;
-
-                if (y + SlidingDistance < x && y > -x - SlidingDistance)
+                setInput = true;
+                touchSecond = Input.mousePosition;
+                float disX = touchSecond.x - touchFirst.x;
+                float disY = touchSecond.y - touchFirst.y;
+                if (Mathf.Abs(disX) >= Mathf.Abs(disY))
                 {
-
-                    if (input == InputDirection.Left)
+                    if (disX > 0)
                     {
-                        return;
+                        input = InputDirection.Right;
                     }
-
-                    //Debug.Log("right");
-
-                    input = InputDirection.Left;
+                    else
+                    {
+                        input = InputDirection.Left;
+                    }
                 }
-                else if (y > x + SlidingDistance && y < -x - SlidingDistance)
+                else
                 {
-                    if (input == InputDirection.Right)
+                    if (disY > 0)
                     {
-                        return;
+                        input = InputDirection.Up;
                     }
-
-                    //Debug.Log("left");
-
-                    input = InputDirection.Right;
-                }
-                else if (y > x + SlidingDistance && y - SlidingDistance > -x)
-                {
-                    if (input == InputDirection.Up)
+                    else
                     {
-                        return;
+                        input = InputDirection.Down;
                     }
-
-                    //Debug.Log("up");
-
-                    input = InputDirection.Up;
                 }
-                else if (y + SlidingDistance < x && y < -x - SlidingDistance)
-                {
-                    if (input == InputDirection.Down)
-                    {
-                        return;
-                    }
-
-                    //Debug.Log("Down");
-
-                    input = InputDirection.Down;
-                }
-
-                timer = 0;
-                touchFirst = touchSecond;
             }
-            if (Event.current.type == EventType.MouseUp)
-            {//滑动结束  
-                input = InputDirection.Null;
-            }
+        }
+        else if (Input.GetMouseButtonUp(0))
+        {
+            timer = 0;
+            input = InputDirection.Null;
+            setInput = false;
         }
     }
+
+
+    //Touch方法不管用。。。。（弃用）
+    //private void GetTouch()
+    //{
+    //    if (Input.touchCount <= 0)
+    //    {
+    //        Debug.Log(Input.touchCount);
+    //        return;
+    //    }
+    //    else if (Input.touchCount == 1)
+    //    {
+    //        Debug.Log(Input.touchCount);
+    //        if (Input.touches[0].phase == TouchPhase.Began)
+    //        {
+    //            touchFirst = Input.touches[0].position;
+    //        }
+    //        else if (Input.touches[0].phase == TouchPhase.Moved)
+    //        {
+    //            timer += Time.deltaTime;
+    //            if (timer > offsetTime && !setInput)
+    //            {
+    //                setInput = true;
+    //                touchSecond = Input.touches[0].position;
+    //                float disX = touchSecond.x - touchFirst.x;
+    //                float disY = touchSecond.y - touchFirst.y;
+    //                if (Mathf.Abs(disX) >= Mathf.Abs(disY))
+    //                {
+    //                    if (disX > 0)
+    //                    {
+    //                        input = InputDirection.Right;
+    //                    }
+    //                    else
+    //                    {
+    //                        input = InputDirection.Left;
+    //                    }
+    //                }
+    //                else
+    //                {
+    //                    if (disY > 0)
+    //                    {
+    //                        input = InputDirection.Up;
+    //                    }
+    //                    else
+    //                    {
+    //                        input = InputDirection.Down;
+    //                    }
+    //                }
+    //            }
+    //        }
+    //        else if(Input.touches[0].phase == TouchPhase.Ended)
+    //        {
+    //            timer = 0;
+    //            input = InputDirection.Null;
+    //            setInput = false;
+    //        }
+    //    }
+    //}
+
+    //void OnGUI()   // 滑动方法
+    //{
+    //    if (Event.current.type == EventType.MouseDown)
+    //    //判断当前手指是按下事件 
+    //    {
+    //        touchFirst = Event.current.mousePosition;//记录开始按下的位置
+    //    }
+    //    if (Event.current.type == EventType.MouseDrag)
+    //    //判断当前手指是拖动事件
+    //    {
+    //        touchSecond = Event.current.mousePosition;
+
+    //        timer += Time.deltaTime;  //计时器
+
+    //        if (timer > offsetTime)
+    //        {
+    //            touchSecond = Event.current.mousePosition; //记录结束下的位置
+    //            Vector2 slideDirection = touchFirst - touchSecond;
+    //            float x = slideDirection.x;
+    //            float y = slideDirection.y;
+
+    //            if (y + SlidingDistance < x && y > -x - SlidingDistance)
+    //            {
+
+    //                if (input == InputDirection.Left)
+    //                {
+    //                    return;
+    //                }
+
+    //                //Debug.Log("right");
+
+    //                input = InputDirection.Left;
+    //            }
+    //            else if (y > x + SlidingDistance && y < -x - SlidingDistance)
+    //            {
+    //                if (input == InputDirection.Right)
+    //                {
+    //                    return;
+    //                }
+
+    //                //Debug.Log("left");
+
+    //                input = InputDirection.Right;
+    //            }
+    //            else if (y > x + SlidingDistance && y - SlidingDistance > -x)
+    //            {
+    //                if (input == InputDirection.Up)
+    //                {
+    //                    return;
+    //                }
+
+    //                //Debug.Log("up");
+
+    //                input = InputDirection.Up;
+    //            }
+    //            else if (y + SlidingDistance < x && y < -x - SlidingDistance)
+    //            {
+    //                if (input == InputDirection.Down)
+    //                {
+    //                    return;
+    //                }
+
+    //                //Debug.Log("Down");
+
+    //                input = InputDirection.Down;
+    //            }
+
+    //            timer = 0;
+    //            touchFirst = touchSecond;
+    //        }
+    //        if (Event.current.type == EventType.MouseUp)
+    //        {//滑动结束  
+    //            input = InputDirection.Null;
+    //        }
+    //    }
+    //}
 
     //键盘输入
     private void GetInput()

@@ -13,7 +13,7 @@ public class PeopleTrigger : MonoBehaviour {
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.tag == Tags.player)
+        if (other.tag == Tags.test)
         {
             //GameSetting.Instance.objectPool.ReturnObject(transform.parent.gameObject);
         }

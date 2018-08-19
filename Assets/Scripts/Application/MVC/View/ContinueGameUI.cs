@@ -52,7 +52,7 @@ public class ContinueGameUI : View {
         GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Countdown);
         while (time > 0)
         {
-            Debug.Log("time: " + time);
+            //Debug.Log("time: " + time);
             time--;
             ShowImage.sprite = numberTexture[time];
             yield return new WaitForSeconds(1);
