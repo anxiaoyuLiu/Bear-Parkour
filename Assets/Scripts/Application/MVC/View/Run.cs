@@ -170,7 +170,9 @@ public class Run : View {
         else if (other.tag == Tags.deathBlock) //死亡障碍物
         {
             SendEvent(Const.E_EndGame);
-            other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            //other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
+            Obstacle ob = other.GetComponent<Obstacle>();
+            ob.HitPlayer();
             GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_End);
         }
         else if (other.tag == Tags.car) //汽车

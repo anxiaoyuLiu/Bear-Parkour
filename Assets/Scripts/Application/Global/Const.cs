@@ -16,6 +16,7 @@ public static class Const {
     public const string E_BackHome = "E_BackHome";
     public const string E_GoShopping = "E_GoShopping";
     public const string E_Restart = "E_Restart";
+    public const string E_TimeUp = "TimeUp";
 
     public const string E_UpdateDistance = "E_UpdateDistance";
     public const string E_UpdateCoin = "E_UpdateCoin";

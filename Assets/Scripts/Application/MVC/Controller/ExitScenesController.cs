@@ -11,16 +11,20 @@ public class ExitScenesController : Controller {
         switch (info.scenesIndex)
         {
             case 1:
+                MVC.Views.Clear();
                 break;
             case 2:
+                MVC.Views.Clear();
                 break;
             case 3:
                 GameSetting.Instance.playSound.PauseBgAudio();
+                MVC.Views.Clear();
                 break;
             case 4:
                 GameSetting.Instance.objectPool.ClearPools();
                 GameSetting.Instance.playSound.PauseBgAudio();
                 GameSetting.Instance.playSound.PauseStepAudio();
+                MVC.Views.Clear();
                 break;
             default:
                 break;

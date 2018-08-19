@@ -124,6 +124,10 @@ public class PlayingUI : View
         set
         {
             gameModel.Times = value;
+            if (gameModel.Times <= 0)
+            {
+                SendEvent(Const.E_TimeUp);
+            }
             UpdateTimes();
         }
     }
@@ -186,7 +190,7 @@ public class PlayingUI : View
         {
             TimeText.text = minute.ToString() + ":0" + second.ToString();
         }
-        TimeSlider.value = Times / 120;
+        TimeSlider.value = Times / 90;
     }
 
     //游戏按键初始化

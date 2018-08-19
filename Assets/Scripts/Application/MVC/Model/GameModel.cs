@@ -16,6 +16,7 @@ public class GameModel : Model {
     private bool isDoubleCoin = false;
     private bool isMagnet = false;
     private bool isSpeedUp = false;
+    private bool isBallFlying = false;
 
     //技能时间
     private int starsTime = 8;
@@ -442,6 +443,19 @@ public class GameModel : Model {
         set
         {
             clothesIndex = value;
+        }
+    }
+
+    public bool IsBallFlying
+    {
+        get
+        {
+            return isBallFlying;
+        }
+
+        set
+        {
+            isBallFlying = value;
         }
     }
 }

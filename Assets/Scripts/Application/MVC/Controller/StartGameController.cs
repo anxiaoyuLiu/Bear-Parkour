@@ -24,6 +24,7 @@ public class StartGameController : Controller {
         RegisterController(Const.E_GoShopping, typeof(GoShoppingController));
         RegisterController(Const.E_Restart, typeof(RestartController));
         RegisterController(Const.E_BuySkill, typeof(BuySkillController));
+        RegisterController(Const.E_TimeUp, typeof(TimeUpController));
         //注册model
         RegisterModel(new GameModel());
         //初始化

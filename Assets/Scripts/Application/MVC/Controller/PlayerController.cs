@@ -554,6 +554,7 @@ public class PlayerController : View {
         SendMessage("SendMessagePlayShoot",num);//向动画控制器发消息
         //localPosition = transform.localPosition;
         //Debug.Log(localPosition);
+        gameModel.IsBallFlying = true;
         StartCoroutine(IShootBall());
     }
 
@@ -561,6 +562,7 @@ public class PlayerController : View {
     {
         while (true)
         {
+            if (!gameModel.IsBallFlying) break;
             if (!(gameModel.IsOver || gameModel.IsPause))
             {
                 ball_fly.transform.Translate(transform.forward * 20 * Time.deltaTime);

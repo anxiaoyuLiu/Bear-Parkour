@@ -5,10 +5,12 @@ using UnityEngine;
 public class BollHit : View {
 
     Transform effectParent;
+    GameModel gameModel;
 
     private void Awake()
     {
         effectParent = GameObject.FindWithTag(Tags.test).transform;
+        gameModel = GetModel<GameModel>();
     }
 
     private void Start()
@@ -34,6 +36,7 @@ public class BollHit : View {
         //Debug.Log(other.tag);
         if (other.tag == Tags.goal)
         {
+            gameModel.IsBallFlying = false;
             SendEvent(Const.E_Goal, effectParent);
             //other.SendMessage("GoalRecive");
             GameSetting.Instance.objectPool.ReturnObject(gameObject);
@@ -44,6 +47,7 @@ public class BollHit : View {
         }
         else if (other.tag == Tags.goalkeeper)
         {
+            gameModel.IsBallFlying = false;
             //Debug.Log("send message to fly");
             other.SendMessage("HitPlayer", SendMessageOptions.DontRequireReceiver);
             GameSetting.Instance.objectPool.ReturnObject(gameObject);
@@ -51,6 +55,7 @@ public class BollHit : View {
         }
         else if(other.tag!=Tags.beforeTrigger && other.tag!=Tags.item && other.tag!=Tags.animationTrigger)
         {
+            gameModel.IsBallFlying = false;
             GameSetting.Instance.objectPool.ReturnObject(gameObject);
             GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Zhuang);
         }

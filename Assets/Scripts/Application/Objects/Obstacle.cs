@@ -33,16 +33,17 @@ public class Obstacle : ReusableObject {
         //GameSetting.Instance.objectPool.GetObject(Const.FX_ZhuangJi, effectParent);
         //播放撞击音效
         //GameSetting.Instance.playSound.PlayEffectAudio(Const.Se_UI_Hit);//转到碰撞判断处播放
-        //回收
+        //回收当前物品
         GameSetting.Instance.objectPool.ReturnObject(gameObject);
+        //Destroy(gameObject);
         //StartCoroutine(IReturn());
     }
 
-    IEnumerator IReturn()
-    {
-        yield return new WaitForSeconds(0.1f);
-        GameSetting.Instance.objectPool.ReturnObject(gameObject);
-    }
+    //IEnumerator IReturn()
+    //{
+    //    yield return new WaitForSeconds(0.1f);
+    //    GameSetting.Instance.objectPool.ReturnObject(gameObject);
+    //}
 
     //IEnumerator IReturn()
     //{
